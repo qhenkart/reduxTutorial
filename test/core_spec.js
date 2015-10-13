@@ -105,45 +105,33 @@ describe('application logic', () => {
   describe('vote', () => {
     it('creates a tally for the voted entry', () => {
       const state = Map({
-        vote: Map({
-          pair:List.of('Dancer', 'Prancer')
-        }),
-        entries: List()
+        pair:List.of('Dancer', 'Prancer')
       });
       const nextState = vote(state, 'Dancer');
       expect(nextState).to.equal(Map({
-        vote:Map({
-          pair: List.of('Dancer', 'Prancer'),
-          tally: Map({
-            'Dancer': 1
-          })
-        }),
-        entries: List()
+        pair: List.of('Dancer', 'Prancer'),
+        tally: Map({
+          'Dancer': 1
+        })
       }));
     });
 
 
     it('adds to existing tally for the voted entry', () => {
       const state = Map ({
-        vote: Map({
-          pair:List.of('Dancer', 'Prancer'),
-          tally: Map({
-            'Dancer':4,
-            'Prancer':7
-          })
-        }),
-        entries: List()
+        pair:List.of('Dancer', 'Prancer'),
+        tally: Map({
+          'Dancer':4,
+          'Prancer':7
+        })
       });
       const nextState = vote(state,'Prancer');
       expect(nextState).to.equal(Map({
-        vote: Map({
-          pair:List.of('Dancer','Prancer'),
-          tally: Map({
-            'Dancer':4,
-            'Prancer':8
-          })
-        }),
-        entries: List()
+        pair:List.of('Dancer','Prancer'),
+        tally: Map({
+          'Dancer':4,
+          'Prancer':8
+        })
       }));
     });
   });
